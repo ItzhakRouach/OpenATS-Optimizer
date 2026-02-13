@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  # The backend API
+  server:
+    build: ./server
+    container_name: "ats_backend"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    environment:
+      # DNS name so the Docker can talk to my mac localhost
+      - AI_SERVICE_URL=http://host.docker.internal:11434
+      - DB_HOST=postgres
+      - DB_PASS=password
+    depends_on:
+      - postgres
+    extra_hosts:
+      # config to allow Linux container to talk to Mac host
+      - "host.docker.internal:host-gateway"
+
+    #Initilize the database
+  postgres:
+    image: postgres:15-alpine
+    container_name: ats_db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ats_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
