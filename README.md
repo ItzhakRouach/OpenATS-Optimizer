@@ -17,33 +17,35 @@ Full-stack application that helps users optimize their resumes for Applicant Tra
 - **Clean Architecture:** Backend logic is strictly separated into Use Cases and Controllers for high maintainability and easy testing.
 - **Dockerized Environment:** The entire stack (Frontend, Backend, and AI) runs in isolated containers with automated internal networking.
 
-## 📂 Project Structure
-
-\`\`\`text
-open-ats-optimizer/
-├── client/ # React frontend
-│ ├── src/ # UI Components and App logic
-│ └── Dockerfile # Multi-stage Nginx build
-├── server/ # Node.js backend
-│ ├── src/
-│ │ ├── domain/ # Enterprise logic, Entities, and TS Interfaces
-│ │ ├── use-cases/ # Application business rules (e.g., AnalyzeResume)
-│ │ └── infrastructure/ # Frameworks and external tools
-│ │ ├── controllers/# API Request handlers (analyzeController)
-│ │ ├── webserver/ # Express app and routing (routes.ts)
-│ │ └── ai/ # External service integrations (OllamaService)
-│ ├── server.ts # Application entry point
-│ └── Dockerfile # Node.js runtime setup
-└── docker-compose.yml # Orchestrates the 3 containers
-\`\`\`
-
 ## Project Demo Gallery
 
  <p align="center">
-  <img src="assets/input.png" alt="ATS Analysis Dashboard" width="33%" />
-  <img src="assets/Result.png" alt="AI Insight" width="33%" />
-  <img src="assets/interview.png" alt="Mock Interview Feature" width="33%" />
+  <img src="assets/input.png" alt="ATS Analysis Dashboard" width="32%" />
+  <img src="assets/Result.png" alt="AI Insight" width="32%" />
+  <img src="assets/interview.png" alt="Mock Interview Feature" width="32%" />
 </p>
+
+---
+
+## 🏗️ Project Structure
+
+```text
+OpenATS/
+├── client/                 # React Frontend
+│   ├── src/
+│   │   ├── components/     # UI Components (InterviewPrep, OptimizerForm)
+│   │   ├── services/       # API call definitions
+│   │   └── types/          # TypeScript interfaces
+│   └── package.json
+│
+├── server/                 # Node.js Backend (Clean Architecture)
+│   ├── src/
+│   │   ├── domain/         # Core business interfaces (IAIService)
+│   │   ├── use-cases/      # Application logic (GenerateInterview)
+│   │   └── infrastructure/ # Express controllers, Routes, OllamaService
+│   └── package.json
+│
+└── docker-compose.yml      # Container orchestration
 
 ## 🐳 How to Run (Docker)
 
@@ -83,3 +85,4 @@ To cleanly stop the application and remove the containers (your AI model data wi
 \`\`\`bash
 docker compose down
 \`\`\`
+```
