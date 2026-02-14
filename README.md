@@ -1,6 +1,6 @@
 # 🎯 OpenATS Optimizer
 
-A privacy-first, full-stack application that helps users optimize their resumes for Applicant Tracking Systems (ATS). By leveraging a localized LLM (Llama 3), this tool securely analyzes PDF resumes against target job descriptions and provides actionable, keyword-focused feedback without sending sensitive personal data to the cloud.
+Full-stack application that helps users optimize their resumes for Applicant Tracking Systems (ATS). By leveraging a localized LLM (Llama 3), this tool securely analyzes PDF resumes against target job descriptions and provides actionable, keyword-focused feedback without sending sensitive personal data to the cloud.
 
 ## 🚀 Tech Stack
 
