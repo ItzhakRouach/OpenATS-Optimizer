@@ -23,3 +23,16 @@ export interface InterviewResponse {
   success: boolean;
   data: InterviewData;
 }
+
+export interface ATSResponse {
+  success: boolean;
+  data: ATSAnalysisData;
+  resumeText: string;
+  raw_text_preview: string;
+}
+
+export interface ATSAnalysisData {
+  score: number;
+  missingKeywords: string[];
+  feedback: string[];
+}

@@ -5,12 +5,12 @@ import { OptimizerForm } from "./components/OptimizerForm";
 import { InterviewPrep } from "./components/InterviewPrep";
 import { fetchInterviewQuestions } from "./services/api";
 import type { InterviewData } from "./types/interfaces";
-
+import type { ATSResponse } from "./types/interfaces";
 function App() {
   const [file, setFile] = useState<File | null>(null);
   const [jobDesc, setJobDesc] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [aiResult, setAiResult] = useState<any | null>(null);
+  const [aiResult, setAiResult] = useState<ATSResponse | null>(null);
   const [interviewData, setInterviewData] = useState<InterviewData | null>(
     null,
   );
@@ -59,7 +59,7 @@ function App() {
   };
 
   const handleGenerateInterview = async () => {
-    const extractedText = aiResult?.resumeText || aiResult?.data?.resumeText;
+    const extractedText = aiResult?.resumeText || "";
     if (!extractedText || !jobDesc) {
       alert("Resume Text is missing from the analysis result!");
     }
