@@ -87,7 +87,3 @@ To cleanly stop the application and remove the containers (your AI model data wi
 \`\`\`bash
 docker compose down
 \`\`\`
-
-```
-
-```
