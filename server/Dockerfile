@@ -5,7 +5,7 @@ FROM node:20-slim
 WORKDIR /app
 
 # Copy packages files and install dependencies
-COPY packages*.json ./
+COPY package*.json ./
 RUN npm install
 
 # Copy the rest of the server code
