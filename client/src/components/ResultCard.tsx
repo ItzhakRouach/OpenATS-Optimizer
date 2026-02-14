@@ -1,4 +1,4 @@
-import type { AnalysisResult } from "../configs/interfaces";
+import type { AnalysisResult } from "../types/interfaces";
 
 interface ResultCardProp {
   aiResult: AnalysisResult | null;

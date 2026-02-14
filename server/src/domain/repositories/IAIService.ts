@@ -21,4 +21,6 @@ export interface IAIService {
     resumeText: string,
     jobDescription: string,
   ): Promise<AIAnalysisResult>;
+
+  generateResponse(prompt: string): Promise<any>;
 }

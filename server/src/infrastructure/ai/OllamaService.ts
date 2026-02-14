@@ -8,17 +8,17 @@ import {
  * Service: OllamaService
  * Implements the IAIService interface using the local Ollama instance.
  */
-
 export class OllamaService implements IAIService {
   private readonly baseUrl: string;
   private readonly model: string;
 
   constructor() {
-    // Definded the ollama enviroment / on mac use 'host.docker.internal' to reach the host machine
+    // Defined the ollama environment / on mac use 'host.docker.internal' to reach the host machine
     this.baseUrl = process.env.AI_SERVICE_URL || "http://127.0.0.1:11434";
     this.model = "llama3:latest";
   }
 
+  // 1. First required method from the interface
   async analyzeResume(
     resumeText: string,
     jobDescription: string,
@@ -35,12 +35,12 @@ export class OllamaService implements IAIService {
         stream: false,
         format: "json",
         options: {
-          tempature: 0.1, // tempature responsible for model creativity from 0 to 1
+          temperature: 0.1, // temperature responsible for model creativity from 0 to 1
         },
       });
 
       const result = JSON.parse(response.data.response);
-      console.log("Recived result from Lamma3 ....");
+      console.log("Received result from Llama3 ....");
       console.log("Parse the result from JSON....");
 
       // Map the AI return result to the defined domain object
@@ -55,7 +55,32 @@ export class OllamaService implements IAIService {
     }
   }
 
-  // defined the model behavior , how he should act
+  // 2. Second required method from the interface (This fixes your error!)
+  async generateResponse(prompt: string): Promise<any> {
+    try {
+      console.log("Generating general response from Llama3...");
+      const targetUrl = `${this.baseUrl}/api/generate`;
+
+      const response = await axios.post(targetUrl, {
+        model: this.model,
+        prompt: prompt,
+        stream: false,
+        format: "json",
+        options: {
+          temperature: 0.7, // Higher temp for creative interview questions
+        },
+      });
+
+      return JSON.parse(response.data.response);
+    } catch (err) {
+      console.error("AI Service Error:", err);
+      throw new Error(
+        "Failed to communicate with AI Service for general response",
+      );
+    }
+  }
+
+  // 3. Private helper method
   private buildPrompt(resume: string, job: string) {
     return `
         ACT AS AN EXPERT ATS (APPLICANT TRACKING SYSTEM) SCANNER.

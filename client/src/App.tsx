@@ -2,12 +2,19 @@ import "./App.css";
 import { useState } from "react";
 import { ResultCard } from "./components/ResultCard";
 import { OptimizerForm } from "./components/OptimizerForm";
+import { InterviewPrep } from "./components/InterviewPrep";
+import { fetchInterviewQuestions } from "./services/api";
+import type { InterviewData } from "./types/interfaces";
 
 function App() {
   const [file, setFile] = useState<File | null>(null);
   const [jobDesc, setJobDesc] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [aiResult, setAiResult] = useState<any | null>(null);
+  const [interviewData, setInterviewData] = useState<InterviewData | null>(
+    null,
+  );
+  const [isInterviewLoading, setIsInterviewLoaing] = useState<boolean>(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     // Stop the browser from refreshing the page on submit
@@ -17,8 +24,10 @@ function App() {
       alert("Please Provide both a resume and a job description.");
       return;
     }
-
     setIsLoading(true);
+    setAiResult(null);
+    setInterviewData(null);
+    setIsInterviewLoaing(false);
 
     try {
       const formData = new FormData();
@@ -49,6 +58,23 @@ function App() {
     }
   };
 
+  const handleGenerateInterview = async () => {
+    const extractedText = aiResult?.resumeText || aiResult?.data?.resumeText;
+    if (!extractedText || !jobDesc) {
+      alert("Resume Text is missing from the analysis result!");
+    }
+
+    setIsInterviewLoaing(true);
+    try {
+      const response = await fetchInterviewQuestions(extractedText, jobDesc);
+      setInterviewData(response.data);
+    } catch (err) {
+      console.log("Failed to fecth interview questions.", err);
+    } finally {
+      setIsInterviewLoaing(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-slate-50 via-gray-100 to-slate-200 py-16 px-4">
       <div className="max-w-3xl mx-auto">
@@ -74,7 +100,35 @@ function App() {
           />
         </div>
         {/** Display AI Result */}
-        {aiResult && <ResultCard aiResult={aiResult} />}
+        {aiResult && (
+          <div className="space-y-8 mb-12">
+            <ResultCard aiResult={aiResult} />
+
+            {/* --- NEW INTERVIEW FEATURE: Trigger Button --- */}
+            {!interviewData && (
+              <div className="text-center mt-8">
+                <button
+                  onClick={handleGenerateInterview}
+                  disabled={isInterviewLoading}
+                  className={`px-8 py-4 rounded-xl font-bold text-white shadow-lg transition-all ${
+                    isInterviewLoading
+                      ? "bg-slate-400 cursor-not-allowed"
+                      : "bg-gradient-to-r from-blue-600 to-indigo-600 hover:scale-105 hover:shadow-xl"
+                  }`}
+                >
+                  {isInterviewLoading
+                    ? "Generating Questions..."
+                    : "Generate Personal Interview Example"}
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* --- NEW INTERVIEW FEATURE --- */}
+        {(interviewData || isInterviewLoading) && (
+          <InterviewPrep data={interviewData} isLoading={isInterviewLoading} />
+        )}
       </div>
     </div>
   );

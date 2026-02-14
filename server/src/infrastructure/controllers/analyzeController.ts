@@ -48,6 +48,7 @@ export const analyzeResume = async (req: any, res: any) => {
       success: true,
       data: result,
       raw_text_preview: resumeText.slice(0, 200) + "...",
+      resumeText: resumeText,
     });
   } catch (error: any) {
     console.log(error);
