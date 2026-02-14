@@ -15,7 +15,7 @@ Full-stack application that helps users optimize their resumes for Applicant Tra
 - **Local AI Inference:** Uses Ollama to run Llama 3 entirely on your machine, ensuring zero data leakage.
 - **Secure PDF Parsing:** Extracts text from uploaded resumes in memory (RAM) without writing temporary files to the disk.
 - **Clean Architecture:** Backend logic is strictly separated into Use Cases and Controllers for high maintainability and easy testing.
-  -- **AI-Powered Mock Interview:** Generates personalized technical/behavioral interview questions and actionable tips by comparing the user's resume text against the job description using localized Llama 3 prompt engineering.
+- **AI-Powered Mock Interview:** Generates personalized technical/behavioral interview questions and actionable tips by comparing the user's resume text against the job description using localized Llama 3 prompt engineering.
 - **Dockerized Environment:** The entire stack (Frontend, Backend, and AI) runs in isolated containers with automated internal networking.
 
 ## Project Demo Gallery
