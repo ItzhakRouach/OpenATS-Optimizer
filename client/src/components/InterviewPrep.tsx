@@ -25,7 +25,7 @@ export function InterviewPrep({ data, isLoading }: Props) {
   return (
     <div className="bg-white/80 backdrop-blur-xl rounded-[2.5rem] shadow-[0_32px_64px_-15px_rgba(0,0,0,0.1)] border border-white p-8 md:p-10 mt-8 w-full max-w-3xl mx-auto transition-all">
       <h2 className="text-3xl font-black text-slate-900 mb-8 border-b border-slate-200 pb-4">
-        Personal Interview Preparation
+        Personal Interview Preperation
       </h2>
       {/** Tips Section */}
       <div className="mb-10 bg-emerald-50/50 border border-emerald-100 rounded-2xl p-6 shadow-sm">
