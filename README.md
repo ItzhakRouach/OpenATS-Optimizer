@@ -17,14 +17,6 @@ A privacy-first, full-stack application that helps users optimize their resumes 
 - **Clean Architecture:** Backend logic is strictly separated into Use Cases and Controllers for high maintainability and easy testing.
 - **Dockerized Environment:** The entire stack (Frontend, Backend, and AI) runs in isolated containers with automated internal networking.
 
-## Project Demo Gallery
-
- <p align="center">
-  <img src="assets/input.png" alt="ATS Analysis Dashboard" width="32%" />
-  <img src="assets/Result.png" alt="AI Insight" width="32%" />
-  <img src="assets/interview.png" alt="Mock Interview Feature" width="32%" />
-</p>
-
 ## 📂 Project Structure
 
 \`\`\`text
@@ -44,6 +36,14 @@ open-ats-optimizer/
 │ └── Dockerfile # Node.js runtime setup
 └── docker-compose.yml # Orchestrates the 3 containers
 \`\`\`
+
+## Project Demo Gallery
+
+ <p align="center">
+  <img src="assets/input.png" alt="ATS Analysis Dashboard" width="33%" />
+  <img src="assets/Result.png" alt="AI Insight" width="33%" />
+  <img src="assets/interview.png" alt="Mock Interview Feature" width="33%" />
+</p>
 
 ## 🐳 How to Run (Docker)
 
