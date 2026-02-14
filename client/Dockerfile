@@ -1,24 +1,14 @@
-# Use a Node.js LTS version
-FROM node:20-slim
+# Build stage
+FROM node:20-slim as build
 
-#Set the working directory
 WORKDIR /app
-
-# Copy packages files and install dependencies
-COPY packages*.json ./
+COPY package*.json ./
 RUN npm install
-
-# Copy the rest of the server code
 COPY . .
 RUN npm run build
 
-
-# Production stage: Use Nginx to serve the static files
+# Production stage
 FROM nginx:stable-alpine
 COPY --from=build /app/dist /usr/share/nginx/html
-
-#Expose the port for the frontend
 EXPOSE 80
-
-#Start the server
 CMD ["nginx", "-g", "daemon off;"]
