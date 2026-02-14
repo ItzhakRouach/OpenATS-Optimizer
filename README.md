@@ -47,6 +47,8 @@ OpenATS/
 │
 └── docker-compose.yml      # Container orchestration
 
+```
+
 ## 🐳 How to Run (Docker)
 
 You don't need to install Node modules manually. The entire application is containerized.
@@ -85,4 +87,7 @@ To cleanly stop the application and remove the containers (your AI model data wi
 \`\`\`bash
 docker compose down
 \`\`\`
+
+```
+
 ```
