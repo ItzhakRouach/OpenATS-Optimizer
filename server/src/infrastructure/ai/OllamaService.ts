@@ -61,21 +61,21 @@ export class OllamaService implements IAIService {
         ACT AS AN EXPERT ATS (APPLICANT TRACKING SYSTEM) SCANNER.
 
         JOB DESCRIPTION:
-        "${job.slice(0, 2000)}"
+        "${job}"
 
         CANDIDATE RESUME:
-        "${resume.slice(0, 2000)}"
+        "${resume}"
 
         INSTRUCTION:
         1. Analyze the resume against the job description.
-        2. Identify missing technical keywords.
+        2. Identify all missing technical keywords.
         3. Giva a math score (0 - 100 ) as whole number and not float.
-        4. Provide 3 specified improvements.
+        4. Provide 3 to 5 specified improvements.
 
         OUTPUT FORMAT (STRICT JSON ONLY):
         {
             "score": number,
-            "missing_keywords": ["keyword1","keyword2"],
+            "missing_keywords": ["keyword1","keyword2" , "keyword3"],
             "feedback": ["fix 1","fix 2"]
         }
     `;
